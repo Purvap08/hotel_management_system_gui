@@ -6,6 +6,7 @@ from datetime import date
 from tkinter import Message
 import time
 import re
+import register
 db=mysql.connector.connect(
     host="localhost",
     user="root",
@@ -18,6 +19,9 @@ t=time.strftime("%H:%M:%S")
 #print(d,t)
 #print(db)
 owner={}
+def registration():
+    root.destroy()
+    register.start()
 def owner_det():
     owner.clear()
     sql="SELECT * FROM `owner`"
@@ -101,13 +105,13 @@ def login():
                     msg.grid(column=0,row=7)
             else:
                 #print("Invalid Username")
-                    msg=Message(frm,text="Invalid username",width=250,fg="red")
-                    msg.grid(column=0,row=7)
+                msg=Message(frm,text="Invalid username",width=250,fg="red")
+                msg.grid(column=0,row=7)
        
 pas_click = pas.bind('<Button-1>', lambda x: click1(pas))
 pas_leave = pas.bind('<FocusOut>', lambda x: leave(pas, 'password'))    
 tk.Button(frm, text="login", command=login,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=5,padx=100,pady=2)
-tk.Button(frm, text="register", command=root.destroy,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=6,padx=100,pady=2)
+tk.Button(frm, text="register", command=registration,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=6,padx=100,pady=2)
 
 root.mainloop()
 
