@@ -8,6 +8,7 @@ import time
 import re
 import register
 import buttons
+import add_hotel
 db=mysql.connector.connect(
     host="localhost",
     user="root",

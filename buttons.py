@@ -1,6 +1,7 @@
 import mysql.connector
 import tkinter as tk
 from tkinter import *
+import add_hotel
 db=mysql.connector.connect(
 		host="Localhost",
 		user="root",
@@ -20,7 +21,10 @@ def select_hotel(owner,username):
         #print(result)
         for h in result:
             hotel[h[0]]={"owner_id":h[3],"hotel_name":h[4],"status":h[5]}
-    hotel_det()    
+    hotel_det()
+    def ad_hotel():
+        root.destroy()
+        add_hotel.start(owner,username)
     #print(hotel)
     root=tk.Tk()
     root.geometry("600x600")
@@ -30,7 +34,7 @@ def select_hotel(owner,username):
     frm.pack(padx=5,pady=5)
     #tk.Label(frm,text="Hotel Management System",bg="red",fg="white").grid(row=0,column=5)
     tk.Label(frm,text="Hotel Management System",bg="red",fg="white",width=50,height=3,font=("Arial",16,"bold")).pack(padx=20,pady=50)
-    tk.Button(frm,text="Hotel",command=root.destroy,bg="sky blue",activebackground="light green",fg="white",width="35",relief="flat").pack(padx=10,pady=10)
+    tk.Button(frm,text="Add Hotel",command=ad_hotel,bg="sky blue",activebackground="light green",fg="white",width="35",relief="flat").pack(padx=10,pady=10)
     #tk.Button(frm,text="Menu Category",command=root.destroy,bg="sky blue",activebackground="light green",fg="white",width="40").pack(padx=5,pady=5)
     #tk.Button(frm,text="Menu",command=root.destroy,bg="sky blue",activebackground="light green",fg="white",width="40").pack(padx=5,pady=5)
     menubutton = Menubutton(frm, text="Select Hotel",bg="sky blue",activebackground="light green",fg="white",width="40")
@@ -38,5 +42,8 @@ def select_hotel(owner,username):
     menubutton.menu = Menu(menubutton)  
     menubutton["menu"]= menubutton.menu
     for h1,hnm in hotel.items():
-        menubutton.menu.add_checkbutton(label=hnm["hotel_name"])
+        #print(hnm["hotel_name"])
+        var=IntVar()
+        menubutton.menu.add_checkbutton(label=hnm["hotel_name"],variable=var)
+    tk.Button(frm,text="cancel",command=root.destroy,bg="sky blue",activebackground="light green",fg="white",width="35",relief="flat").pack(padx=10,pady=10)    
     root.mainloop()
