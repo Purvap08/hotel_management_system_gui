@@ -49,6 +49,8 @@ def start():
     cps=tk.Entry(frm)
     cps.grid(row=9,column=1)
     owner={}
+    def back():
+        root.destroy()
     def reset():
         ad.delete(0,tk.END)
         fn.delete(0,tk.END)
@@ -133,4 +135,5 @@ def start():
     #register()        
     tk.Button(frm,text="Submit",command=register,bg="green",fg="white",width=10).grid(row=11,column=0)
     tk.Button(frm,text="Reset",command=reset,bg="red",fg="white",width=10).grid(row=11,column=1)
+    tk.Button(frm,text="Back",command=back,bg="blue",fg="white",width=10).grid(row=11,column=2)
     root.mainloop()

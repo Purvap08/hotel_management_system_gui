@@ -7,6 +7,7 @@ from tkinter import Message
 import time
 import re
 import register
+import buttons
 db=mysql.connector.connect(
     host="localhost",
     user="root",
@@ -19,16 +20,20 @@ t=time.strftime("%H:%M:%S")
 #print(d,t)
 #print(db)
 owner={}
+def choose_hotel(username):
+    root.destroy()
+    buttons.select_hotel(owner,username)
 def registration():
     root.destroy()
     register.start()
 def owner_det():
     owner.clear()
-    sql="SELECT * FROM `owner`"
-    cur.execute(sql)
+    sql="SELECT * FROM `owner` where state = %s"
+    val=("active",)
+    cur.execute(sql,val)
     result=cur.fetchall()
     for o in result:
-        owner[o[3]]={"id":o[1],"password":o[4],"name":o[5],"contact_no":o[6],"state":o[7]}
+        owner[o[3]]={"id":o[0],"password":o[4],"name":o[5],"contact_no":o[6],"state":o[7]}
 owner_det()        
 #print(owner)        
 root = tk.Tk()
@@ -77,6 +82,7 @@ pas.insert(0, 'password')
 #pas.configure(state='disabled')
 #pas.bind("<Leave>", leave1)
 def login():
+    global username
     #frm = ttk.Frame(root, padding=10,borderwidth=3, relief="solid")
     #frm.grid()
     username = unm.get()
@@ -98,7 +104,8 @@ def login():
                     #print("login successfully")
                     msg=Message(frm,text="login successfully",width=250,fg="green")
                     msg.grid(column=0,row=7)
-                    root.destroy() 
+                    #root.destroy() 
+                    choose_hotel(username)
                 else:
                     #print("Invalid password")
                     msg=Message(frm,text="Invalid password",width=250,fg="red")
