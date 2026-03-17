@@ -190,19 +190,22 @@ def update(selected_id,owner,username):
             tk.Label(frm,text="Enter category name:").grid(row=4,column=0,pady=10)
             c_nm=tk.Entry(frm,width=50)
             c_nm.grid(row=4,column=1,pady=10)
-            cnm=c_nm.get()
-            if cnm == "":
-                tk.Message(frm,text="Enter Category name",bg="white",fg="red",width=200).grid(row=5,column=1,columnspan=2)
-            elif cnm in mcatnm:
-                tk.Message(frm,text="Category is already Exists",bg="white",fg="red",width=200).grid(row=5,column=1,columnspan=2)
-            else:
-                sql="UPDATE `menu_category` SET name = %s WHERE id = %s"
-                val=(cnm,cid)
-                cur.execute(sql,val)
-                db.commit()
-                tk.Message(frm,text="Category Updated Successfully",bg="white",fg="green",width=200).grid(row=6,column=1,columnspan=2)
-                c_id.delete(0,tk.END)
-                c_nm.delete(0,tk.END)
+            def save_update():
+                cnm=c_nm.get()
+                if cnm == "":
+                    tk.Message(frm,text="Enter Category name",bg="white",fg="red",width=200).grid(row=5,column=1,columnspan=2)
+                elif cnm in mcatnm:
+                    tk.Message(frm,text="Category is already Exists",bg="white",fg="red",width=200).grid(row=5,column=1,columnspan=2)
+                else:
+                    sql="UPDATE `menu_category` SET name = %s WHERE id = %s"
+                    val=(cnm,cid)
+                    cur.execute(sql,val)
+                    db.commit()
+                    tk.Message(frm,text="Category Updated Successfully",bg="white",fg="green",width=200).grid(row=6,column=1,columnspan=2)
+                    c_id.delete(0,tk.END)
+                    c_nm.delete(0,tk.END)
+            tk.Button(frm, text="Save", command=save_update, fg="white", bg="green").grid(row=4, column=2, pady=10)    
+                    
     tk.Button(frm,text="Update",command=update_cat,fg="white",bg="green",activebackground="blue",width=10).grid(row=7,column=0,pady=10)
     tk.Button(frm,text="Back",command=back,bg="red",fg="white",activebackground="blue",width=10).grid(row=7,column=1,pady=10)
     tk.Button(frm,text="Logout",command=lambda:logout1.log_out(root),bg="red",fg="white",activebackground="blue",width=10).grid(row=7,column=2,pady=10)
