@@ -44,11 +44,14 @@ def update(selected_id,owner,username):
     def c_delete():
         root.destroy()
         m_category.delete(selected_id,owner,username)
+    def c_update():
+        root.destroy()
+        m_category.update(selected_id,owner,username)
     def menu_c_o():
         clear_o()
         Radiobutton(o_frm,text="Add Category",command=c_add,variable = v,value="21",indicator=0,background="light pink").pack(fill=X,ipady=5)
         Radiobutton(o_frm,text="Delete Category",command=c_delete,variable= v,value="2",indicator=0,background="light pink").pack(fill=X,ipady=5)
-        Radiobutton(o_frm,text="Update Category",variable= v,value="3",indicator=0,background="light pink").pack(fill=X,ipady=5)
+        Radiobutton(o_frm,text="Update Category",command=c_update,variable= v,value="3",indicator=0,background="light pink").pack(fill=X,ipady=5)
         Radiobutton(o_frm,text="Check menu Category",command=c_check,variable=v,value="4",indicator=0,background="light pink").pack(fill=X,ipady=5)
     def menu_o():
         clear_o()
