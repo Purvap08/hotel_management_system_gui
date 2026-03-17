@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import Message
 import time
 from datetime import date
+import buttons
+import logout1
 db=mysql.connector.connect(
 		host="Localhost",
 		user="root",
@@ -24,6 +26,9 @@ def start(owner,username):
     tk.Label(frm,text="Enter Hotel name :").grid(row=3,column=0)
     hn=tk.Entry(frm,width="50")
     hn.grid(row=3,column=1)
+    def back():
+        root.destroy()
+        buttons.select_hotel(owner,username)
     def hnm():
         hn1=hn.get()
         if hn1 == "":
@@ -41,5 +46,6 @@ def start(owner,username):
             #time.sleep(5)
             #root.destroy()
     tk.Button(frm,text="Save",command=hnm,bg="green",fg="white",activebackground="sky blue",width="10").grid(row=4,column=0)
-    tk.Button(frm,text="Cancel",command=root.destroy,bg="red",fg="white",activebackground="blue",width="10").grid(row=4,column=1)
+    tk.Button(frm,text="back",command=back,bg="red",fg="white",activebackground="blue",width="10").grid(row=4,column=1)
+    tk.Button(frm,text="Logout",command=lambda:logout1.log_out(root),bg="red",fg="white",activebackground="blue",width="10").grid(row=4,column=2)
     root.mainloop()

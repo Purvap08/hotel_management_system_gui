@@ -108,5 +108,4 @@ def log_in():
     tk.Button(frm, text="login", command=login,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=5,padx=100,pady=2)
     tk.Button(frm, text="register", command=registration,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=6,padx=100,pady=2)
 
-    root.mainloop()
-log_in()    
+    root.mainloop()   

@@ -7,6 +7,7 @@ from tkcalendar import DateEntry
 from tkinter import Message
 import time
 import re
+import logout1
 def start():
     db=mysql.connector.connect(
         host="localhost",
@@ -135,5 +136,5 @@ def start():
     #register()        
     tk.Button(frm,text="Submit",command=register,bg="green",fg="white",width=10).grid(row=11,column=0)
     tk.Button(frm,text="Reset",command=reset,bg="red",fg="white",width=10).grid(row=11,column=1)
-    tk.Button(frm,text="Back",command=back,bg="blue",fg="white",width=10).grid(row=11,column=2)
+    tk.Button(frm,text="Back",command=lambda:logout1.log_out(root),bg="blue",fg="white",width=10).grid(row=11,column=2)
     root.mainloop()
