@@ -4,6 +4,7 @@ from tkinter import *
 import buttons
 import logout1
 import m_category
+import menu
 db=mysql.connector.connect(
     host="Localhost",
     user="root",
