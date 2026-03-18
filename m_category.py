@@ -48,14 +48,14 @@ def add_cat(selected_id,owner,username):
         select_hotels.update(selected_id,owner,username)
     def m_cat():
         cn=c.get()
-        if cn == "" :
-            msg=Message(frm,text="Enter Menu Category",fg="red",width=200).grid(row=2,column=1)
         r=0    
-        for v in menu_c.values():
+        for v in menu_c:
             if cn == v["name"]:
                 r=1
                 break
-        if r:
+        if cn == "" :
+            msg=Message(frm,text="Enter Menu Category",fg="red",width=200).grid(row=2,column=1)
+        elif r:
             msg=Message(frm,text="Category is Already added",fg="red",width=200).grid(row=2,column=1)
         else:
             sql="INSERT INTO `menu_category` (`date`,`time`,`owner_id`,`hotel_id`,`name`,`status`) VALUES (%s,%s,%s,%s,%s,%s)"
@@ -204,9 +204,9 @@ def update(selected_id,owner,username):
                     tk.Message(frm,text="Category Updated Successfully",bg="white",fg="green",width=200).grid(row=6,column=1,columnspan=2)
                     c_id.delete(0,tk.END)
                     c_nm.delete(0,tk.END)
-            tk.Button(frm, text="Save", command=save_update, fg="white", bg="green").grid(row=4, column=2, pady=10)    
+            tk.Button(frm, text="Update", command=save_update, fg="white", bg="green",width=10).grid(row=7, column=0, pady=10)    
                     
-    tk.Button(frm,text="Update",command=update_cat,fg="white",bg="green",activebackground="blue",width=10).grid(row=7,column=0,pady=10)
+    tk.Button(frm,text="Save",command=update_cat,fg="white",bg="green",activebackground="blue").grid(row=2,column=2,pady=10)
     tk.Button(frm,text="Back",command=back,bg="red",fg="white",activebackground="blue",width=10).grid(row=7,column=1,pady=10)
     tk.Button(frm,text="Logout",command=lambda:logout1.log_out(root),bg="red",fg="white",activebackground="blue",width=10).grid(row=7,column=2,pady=10)
     root.mainloop()
