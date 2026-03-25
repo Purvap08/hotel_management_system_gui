@@ -50,7 +50,13 @@ def update(selected_id,owner,username):
         m_category.update(selected_id,owner,username)
     def m_add():
         root.destroy()
-        menu.menu_l(selected_id,owner,username)
+        menu.add_menu(selected_id,owner,username)
+    def m_check():
+        root.destroy()
+        menu.check_m(selected_id,owner,username)
+    def m_delete():
+        root.destroy()
+        menu.delete_m(selected_id,owner,username)
     def menu_c_o():
         clear_o()
         Radiobutton(o_frm,text="Add Category",command=c_add,variable = v,value="21",indicator=0,background="light pink").pack(fill=X,ipady=5)
@@ -60,9 +66,9 @@ def update(selected_id,owner,username):
     def menu_o():
         clear_o()
         Radiobutton(o_frm,text="Add menu",command=m_add,variable= v,value="5",indicator=0,background="light pink").pack(fill= X,ipady=5)
-        Radiobutton(o_frm,text="Delete menu",variable= v,value="6",indicator=0,background="light pink").pack(fill=X,ipady=5)
+        Radiobutton(o_frm,text="Delete menu",command=m_delete,variable= v,value="6",indicator=0,background="light pink").pack(fill=X,ipady=5)
         Radiobutton(o_frm,text="Update menu",variable= v,value="7",indicator=0,background="light pink").pack(fill=X,ipady=5)
-        Radiobutton(o_frm,text="Check menu",variable=v,value="8",indicator=0,background="light pink").pack(fill=X,ipady=5)
+        Radiobutton(o_frm,text="Check menu",command=m_check,variable=v,value="8",indicator=0,background="light pink").pack(fill=X,ipady=5)
     def chef_o():
         clear_o()
         Radiobutton(o_frm,text="Add Chef",variable= v,value="9",indicator=0,background="light pink").pack(fill=X,ipady=5)
