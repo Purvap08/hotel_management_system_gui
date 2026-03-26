@@ -82,8 +82,9 @@ def log_in():
                 cur.execute(sql,val)
                 result=cur.fetchone()
                 u=result[0]
+                print(u)
                 if result:
-                    username==u
+                    username = u
                     sql1="select password from owner where aadhar = %s"
                     val1=(username,)
                     cur.execute(sql1,val1)
@@ -102,7 +103,6 @@ def log_in():
                 else:
                     msg=Message(frm,text="Invalid username",width=250,fg="red")
                     msg.grid(column=0,row=7)
-           
     pas_click = pas.bind('<Button-1>', lambda x: click1(pas))
     pas_leave = pas.bind('<FocusOut>', lambda x: leave(pas, 'password'))    
     tk.Button(frm, text="login", command=login,bg="green",activebackground="blue",activeforeground="white",fg="white",width=10).grid(column=0, row=5,padx=100,pady=2)
